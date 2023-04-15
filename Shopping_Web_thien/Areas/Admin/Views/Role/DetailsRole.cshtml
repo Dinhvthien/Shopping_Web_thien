@@ -1,0 +1,30 @@
+﻿@model Shopping_Web_thien.Models.Role
+
+<div>
+	<h4>Role</h4>
+	<hr />
+	<dl class="row">
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.RoleName)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.RoleName)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Description)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Description)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Status)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Status)
+		</dd>
+	</dl>
+</div>
+<div>
+	<a asp-area="Admin" asp-controller="Role" asp-action="UpdateRole" asp-route-id="@Model?.RoleID">Edit</a> |
+	<a asp-area="Admin" asp-controller="Role" asp-action="ListRole">Back to List</a>
+</div>

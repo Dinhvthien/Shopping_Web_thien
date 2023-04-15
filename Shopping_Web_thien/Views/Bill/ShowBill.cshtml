@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Shopping_Web_thien.Models.Bill>
+
+@{
+	ViewData["Title"] = "ShowBill";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table class="container table" style="margin-top:100px">
+	<thead>
+		<tr>
+			<th>
+				Ngày đặt hàng
+			</th>
+			<th>
+				Trạng thái đơn hàng
+			</th>
+			<th>
+				Tên Người nhận
+			</th>
+			<th>
+				Địa chỉ nhận hàng
+			</th>
+			<th>
+				Số điện thoại
+			</th>
+
+		
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.CreateDate)
+				</td>
+				<td>
+					@if (item.Status == 0)
+					{
+						<p>Đã hủy</p>
+					}
+					@if (item.Status == 1)
+					{
+						<p>Chờ Xác nhận</p>
+					}
+					@if (item.Status == 2)
+					{
+						<p>Đang vận chuyển</p>
+					}
+					@if (item.Status == 3)
+					{
+						<p>Giao hàng thành công</p>
+					}
+					@if (item.Status == 4)
+					{
+						<p>Giao hàng không thành công</p>
+					}
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.recipientName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.recipientAddress)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.recipientPhone)
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

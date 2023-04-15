@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Shopping_Web_thien.Models.CartDetails>
+
+@{
+	ViewData["Title"] = "ShowCart";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@{
+	List<Product> showProduct = ViewBag.showProduct;
+	int a = Convert.ToInt32(ViewData["a"]);
+}
+
+
+<div class="container" style="margin-top:100px">
+	<button><a asp-controller="Bill" asp-action="ShowBill">Đơn hàng đã đặt</a></button>
+	<div class="row">
+		<div class="col-8">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							Ảnh
+						</th>
+						<th>
+							Tên
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.Quantity)
+						</th>
+						<th>
+							Giá
+						</th>
+						<th>
+							Tổng
+						</th>
+						<th>
+
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					@{
+						int tongtien = 0;
+					}
+					@foreach (var item in Model)
+					{
+						tongtien += (item.Quantity * showProduct.FirstOrDefault(c => c.Id == item.IDSP).Price);
+						<tr>
+							<td>
+								<img width="100px" height="100px" src="@showProduct.FirstOrDefault(c=>c.Id== item.IDSP).photo" />
+							</td>
+							<td>
+
+								<p>@showProduct.FirstOrDefault(c=>c.Id== item.IDSP).Name</p>
+
+
+							</td>
+							<td>
+								<input type="number" name="quantity" value="@item.Quantity"></input>
+							</td>
+							<td>
+								@showProduct.FirstOrDefault(c=>c.Id== item.IDSP).Price
+							</td>
+							<td>
+								@(item.Quantity * showProduct.FirstOrDefault(c => c.Id == item.IDSP).Price)
+							</td>
+							<td>
+								<a asp-controller="Cart" asp-action="DeletecartDetail" asp-route-ID="@item.ID">Delete</a>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+			<h4>Tổng tiền:@tongtien</h4>
+		</div>
+		<div class="col-4">
+			<form method="post" asp-controller="Bill" asp-action="CreateBill">
+
+				<div class="form-group">
+					<label class="control-label">Tên người nhận</label>
+					<input type="text" class="form-control" name="name" />
+				
+				</div>
+				<div class="form-group">
+					<label class="control-label">Địa Chỉ nhận hàng</label>
+					<input type="text" class="form-control" name="adress" />
+				
+				</div>
+				<div class="form-group">
+					<label class="control-label">Số điện thoại</label>
+					<input type="text" class="form-control" name="phone" />
+				
+				</div>
+				<div class="form-group">
+					<label class="control-label">Phí vận chuyển:30K</label>
+				</div>
+				<div class="form-group">
+					@if(a<1){
+						<label class="control-label">Tổng Tiền:@(tongtien)</label>
+					}else{
+						<label class="control-label">Tổng Tiền:@(tongtien + 30000)</label>
+					}
+				</div>
+				<div class="form-group">
+					<input type="submit" value="Thanh Toán" class="btn btn-primary" />
+				</div>
+			</form>
+		</div>
+	</div>
+
+</div>
