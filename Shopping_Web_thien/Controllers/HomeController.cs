@@ -35,7 +35,10 @@ namespace Shopping_Web_thien.Controllers
 			var a = productServices.GetProducsByName(username);
 			return View(a);
 		}
-
+		public IActionResult CuaHang()
+		{
+			return View();
+		}
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

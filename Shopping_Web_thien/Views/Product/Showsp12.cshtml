@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Shopping_Web_thien.Models.Product>
+
+@{
+    ViewData["Title"] = "Showsp12";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table class="table" style="margin-top:100px">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.avaliabaleQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Supplier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.photo)
+            </th>
+        </tr>
+    </thead>
+    <form method="get" asp-controller="Product" asp-action="Showsp12">
+        <input style="margin-top:100px" type="text" name="ten" />
+        <button type="submit">Tim kiem</button>
+    <tbody>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.avaliabaleQuantity)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Supplier)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.photo)
+                </td>
+
+            </tr>
+            }
+    </tbody>
+      </form>
+</table>

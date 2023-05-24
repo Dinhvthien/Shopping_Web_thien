@@ -7,6 +7,7 @@ using AspNetCoreHero.ToastNotification.Abstractions;
 using AspNetCoreHero.ToastNotification.Notyf;
 using Shopping_Web_thien.IServices;
 using Shopping_Website.Services;
+using System.Text.RegularExpressions;
 
 namespace Shopping_Web_thien.Controllers
 {
@@ -41,8 +42,23 @@ namespace Shopping_Web_thien.Controllers
 		[HttpPost]
 		public IActionResult Login(string username, string password)
 		{
+			//if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+			//{
+			//    // Handle empty or null username/password
+			//    _notyfService.Error("Mời nhập mật khẩu");
+			//    return RedirectToAction("Login", "Accounts");
+			//}
 
-			var user = userServices.Account(username, password);
+			//bool isUsernameValid = username.Length > 6 && Regex.IsMatch(username, "^[a-zA-Z0-9]+$");
+			//bool isPasswordValid = password.Length > 6 && Regex.IsMatch(password, "^[a-zA-Z0-9]+$");
+
+			//if (!isUsernameValid || !isPasswordValid)
+			//{
+			//    // Handle invalid username/password format
+			//    _notyfService.Error("Tên Và mật khẩu không chính xác");
+			//    return RedirectToAction("Login", "Accounts");
+			//}
+            var user = userServices.Account(username, password);
 			if (user != null)
 			{
 				var listCartDetail = cartDetailServices.GetAllCartDetailss();

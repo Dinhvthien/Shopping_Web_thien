@@ -9,8 +9,6 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\tonggiadoc\Data\" />
-    <Folder Include="Areas\tonggiadoc\Models\" />
   </ItemGroup>
 
   <ItemGroup>
